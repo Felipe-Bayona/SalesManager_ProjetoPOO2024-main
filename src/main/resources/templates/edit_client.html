@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Client</title>
+    <link th:rel="stylesheet" th:href="@{/style.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}"/>
+</head>
+<body>
+<nav>
+    <ul>
+        <li>
+            <a th:href="@{'/products'}" role="button">Products</a>
+        </li>
+        <li>
+            <a th:href="@{'/clients'}" role="button">Clients</a>
+        </li>
+        <li>
+            <a th:href="@{'/orders'}" role="button">Orders</a>
+        </li>
+    </ul>
+</nav>
+<div class="container col-sm-6">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Update Client</h1>
+        <p class="fs-4">
+            Updated client data
+        </p>
+    </div>
+    <form class="form-control-sm" action="#" th:action="@{/clients/save}" th:object="${client}" method="post">
+        <div th:replace="~{validation :: validation}"></div>
+        <div class="mb-3">
+            <label class="form-label" for="client_id">Client ID:</label>
+            <input class="form-control" type="text" readonly="readonly" id="client_id" th:field="*{id}"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="name">Client Name:</label>
+            <input class="form-control" type="text" id="name" th:field="*{name}"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">Email:</label>
+            <input class="form-control" type="text" id="email" th:field="*{email}"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="address">Address:</label>
+            <input class="form-control" type="text" id="address" th:field="*{address}"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="cep">CEP</label>
+            <input class="form-control" type="text" id="cep" th:field="*{cep}">
+        </div>
+        <button class="btn btn-primary btn-lg" type="submit">Save</button>
+    </form>
+    <a th:href="@{/clients}">Back to client list</a>
+</div>
+</body>
+</html>

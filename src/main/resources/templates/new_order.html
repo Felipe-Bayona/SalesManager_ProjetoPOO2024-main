@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Order</title>
+    <link th:rel="stylesheet" th:href="@{/style.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}"/>
+</head>
+<body>
+<nav>
+    <ul>
+        <li>
+            <a th:href="@{'/products'}" role="button">Products</a>
+        </li>
+        <li>
+            <a th:href="@{'/clients'}" role="button">Clients</a>
+        </li>
+        <li>
+            <a th:href="@{'/orders'}" role="button">Orders</a>
+        </li>
+    </ul>
+</nav>
+<div class="container col-sm-6">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Create New Order</h1>
+        <p class="fs-4">Data for the new order</p>
+    </div>
+    <form class="form-control-sm" action="#" th:action="@{/orders/save}" th:object="${order}" method="post">
+        <div th:replace="~{validation :: validation}"></div>
+        <div class="mb-3">
+            <label class="form-label" th:for="client">Select Client
+                <select name="client">
+                    <option th:each="client : ${clients}"
+                            th:name="${client}"
+                            th:value="${client.id}"
+                            th:text="${client.name}"
+                            th:id="client">Client Name
+                    </option>
+                </select>
+            </label>
+        </div>
+        <div id="productContainer">
+            <!-- Product items will be dynamically added here -->
+            <div class="mb-3">
+                <label class="form-label">Select Product
+                    <select name="orderItemList[0].product.id">
+                        <option th:each="product : ${products}"
+                                th:name="${product.id}"
+                                th:value="${product.id}"
+                                th:text="${product.name}">Product Name
+                        </option>
+                    </select>
+                </label>
+                <label class="form-label" for="orderItemList[0].quantity">Quantity</label>
+                <input class="form-control" type="text" id="orderItemList[0].quantity" th:field="*{orderItemList[0].quantity}">
+            </div>
+        </div>
+        <button type="button" id="addProductButton" class="btn btn-secondary">+ Add Product</button>
+        <div class="mb-3">
+            <label class="form-label" for="deliveryDays">Delivery Days</label>
+            <input class="form-control" type="text" id="deliveryDays" th:field="*{deliveryDays}">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Save</button>
+    </form>
+    <a th:href="@{/orders}">Back to Order List</a>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addButton = document.getElementById('addProductButton');
+        const productContainer = document.getElementById('productContainer');
+        let itemIndex = 1;
+
+        addButton.addEventListener('click', function () {
+            const productItem = document.createElement('div');
+            productItem.classList.add('mb-3');
+
+            const productLabel = document.createElement('label');
+            productLabel.classList.add('form-label');
+            productLabel.textContent = 'Select Product';
+            const productSelect = document.createElement('select');
+            productSelect.name = 'orderItemList[' + itemIndex + '].product.id';
+            productSelect.classList.add('form-control');
+            productLabel.appendChild(productSelect);
+
+            const quantityLabel = document.createElement('label');
+            quantityLabel.classList.add('form-label');
+            quantityLabel.textContent = 'Quantity';
+            const quantityInput = document.createElement('input');
+            quantityInput.type = 'text';
+            quantityInput.name = 'orderItemList[' + itemIndex + '].quantity';
+            quantityInput.classList.add('form-control');
+            quantityLabel.appendChild(quantityInput);
+
+            productItem.appendChild(productLabel);
+            productItem.appendChild(quantityLabel);
+            productContainer.appendChild(productItem);
+
+            // Copia as opções do primeiro select para os novos selects criados
+            const options = document.querySelector('select[name="orderItemList[0].product.id"]').innerHTML;
+            productSelect.innerHTML = options;
+
+            itemIndex++;
+        });
+    });
+</script>
+</body>
+</html>

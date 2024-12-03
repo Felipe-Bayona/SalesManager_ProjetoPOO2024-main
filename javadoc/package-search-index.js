@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.springdatapoo"},{"l":"com.example.springdatapoo.controller"},{"l":"com.example.springdatapoo.model"},{"l":"com.example.springdatapoo.repository"},{"l":"com.example.springdatapoo.service"}];updateSearchResults();

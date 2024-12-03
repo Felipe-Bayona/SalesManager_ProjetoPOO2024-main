@@ -1,0 +1,5 @@
+com.example.springdatapoo
+com.example.springdatapoo.controller
+com.example.springdatapoo.model
+com.example.springdatapoo.repository
+com.example.springdatapoo.service
