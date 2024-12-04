@@ -3,7 +3,7 @@
 Sales Manager é um gestor de produtos, clientes e pedidos desenvolvido com SpringData e Thymeleaf.
 
 ## Integrantes
-Matheus Henrique Melo Lemes da Silva, Lucca Bellini Pena, Danielle Rachel Rios Moreira, Nicolas Luis Barbosa Bulhões e Alexandre Cavalcante da Silva
+Lucca Pinz, Felipe Bayona e Gabriel Mota
 
 ## Descrição
 
@@ -21,15 +21,15 @@ Este projeto tem como objetivo gerenciar produtos, clientes e pedidos dentro de 
 
 ## Instruções de Instalação
 
-Para instalar e rodar o projeto Sales Manager, siga os seguintes passos (Garanta que seu mysql esteja em funcionamento):
+Para executar
 
 1. Clone o repositório para sua máquina local:
     ```bash
-    git clone https://github.com/CitrusMH/SalesManager_ProjetoPOO2024.git
+    git clone https://github.com/Felipe-Bayona/SalesManager_ProjetoPOO2024-main
     ```
 2. Navegue até o diretório do projeto:
     ```bash
-    cd ProjetoPOO2024
+    cd SalesManager_ProjetoPOO
     ```
 3. Abra o projeto no IntelliJ IDEA.
 4. Abra o arquivo `application.properties` localizado em `src/main/resources` e altere o usuário e a senha do banco de dados (MySQL) conforme necessário:
